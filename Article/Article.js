@@ -148,13 +148,16 @@ function createComponent(title, date, firstParagraph, secondParagraph, thirdPara
   spanOpen.classList.add('article-open');
   spanClose.classList.add('close');
 
+  const expand = 'Expand';
+  const close = 'Close';
   // Set Text Content
   header.textContent = title;
   day.textContent = date;
   paragraph1.textContent = firstParagraph;
+  spanOpen.textContent = expand;
+  spanClose.textContent = close;
   paragraph2.textContent = secondParagraph;
   paragraph3.textContent = thirdParagraph;
-  span.textContent = 'Expand';
 
   span.addEventListener('click', e => {
     console.log('clicked', e.target)
