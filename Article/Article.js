@@ -120,31 +120,49 @@ data.forEach(data => {
 });
 
 function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  // Define new elements
   const article = document.createElement('div');
   const header = document.createElement('h2');
-  const date = document.createElement('p');
+  const day = document.createElement('p');
   const paragraph1 = document.createElement('p');
   const paragraph2 = document.createElement('p');
   const paragraph3 = document.createElement('p');
   const span = document.createElement('span');
+  const spanOpen = document.createElement('button');
+  const spanClose = document.createElement('button');
 
+  // Setup Element Structure
   article.appendChild(header);
-  article.appendChild(date);
+  article.appendChild(day);
   article.appendChild(paragraph1);
   article.appendChild(paragraph2);
   article.appendChild(paragraph3);
   article.appendChild(span);
+  span.appendChild(spanOpen);
+  span.appendChild(spanClose);
 
+  // Set Class Names
   article.classList.add('article');
-  date.classList.add('date');
+  day.classList.add('date');
   span.classList.add('expandButton');
+  spanOpen.classList.add('article-open');
+  spanClose.classList.add('close');
 
+  // Set Text Content
   header.textContent = title;
-  date.textContent = date;
+  day.textContent = date;
   paragraph1.textContent = firstParagraph;
   paragraph2.textContent = secondParagraph;
   paragraph3.textContent = thirdParagraph;
+  span.textContent = 'Expand';
 
+  span.addEventListener('click', e => {
+    console.log('clicked', e.target)
+    spanOpen.classList.toggle('close');
+    spanClose.classList.toggle('close');
+
+    article.classList.toggle('article-open');
+  })
 
   return article;
 }
