@@ -112,3 +112,60 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+const articlesContainer = document.querySelector('.articles');
+
+data.forEach(data => {
+  articlesContainer.appendChild(createComponent(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+});
+
+function createComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  // Define new elements
+  const article = document.createElement('div');
+  const header = document.createElement('h2');
+  const day = document.createElement('p');
+  const paragraph1 = document.createElement('p');
+  const paragraph2 = document.createElement('p');
+  const paragraph3 = document.createElement('p');
+  const span = document.createElement('span');
+  const spanOpen = document.createElement('button');
+  const spanClose = document.createElement('button');
+
+  // Setup Element Structure
+  article.appendChild(header);
+  article.appendChild(day);
+  article.appendChild(paragraph1);
+  article.appendChild(paragraph2);
+  article.appendChild(paragraph3);
+  article.appendChild(span);
+  span.appendChild(spanOpen);
+  span.appendChild(spanClose);
+
+  // Set Class Names
+  article.classList.add('article');
+  day.classList.add('date');
+  span.classList.add('expandButton');
+  spanOpen.classList.add('article-open');
+  spanClose.classList.add('close');
+
+  const expand = 'Expand';
+  const close = 'Close';
+  // Set Text Content
+  header.textContent = title;
+  day.textContent = date;
+  paragraph1.textContent = firstParagraph;
+  spanOpen.textContent = expand;
+  spanClose.textContent = close;
+  paragraph2.textContent = secondParagraph;
+  paragraph3.textContent = thirdParagraph;
+
+  span.addEventListener('click', e => {
+    console.log('clicked', e.target)
+    spanOpen.classList.toggle('close');
+    spanClose.classList.toggle('close');
+
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+}
